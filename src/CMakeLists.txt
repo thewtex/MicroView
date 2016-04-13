@@ -50,28 +50,31 @@ SET(libs
 # vtk(some VTK kit)Python to be listed.
 
 IF("${VTK_MAJOR_VERSION}" EQUAL 5)
-SET(py_libs
-  vtkCommonPythonD
-  vtkImagingPythonD
-  vtkIOPythonD
-  vtkFilteringPythonD
-  vtkGraphicsPythonD
-  vtkHybridPythonD
-  vtkImagingPythonD
-  vtkVolumeRenderingPythonD
-  vtkWidgetsPythonD
-)
+  SET(py_libs
+    vtkCommonPythonD
+    vtkImagingPythonD
+    vtkIOPythonD
+    vtkFilteringPythonD
+    vtkGraphicsPythonD
+    vtkHybridPythonD
+    vtkImagingPythonD
+    vtkVolumeRenderingPythonD
+    vtkWidgetsPythonD
+  )
 ELSE("${VTK_MAJOR_VERSION}" EQUAL 5)
-SET(py_libs
-  vtkWrappingPython27Core-6.1
-  vtkInteractionWidgetsPython27D-6.1
-  vtkCommonCorePython27D-6.1
-  vtkImagingGeneralPython27D-6.1
-  vtkImagingStatisticsPython27D-6.1
-  vtkCommonExecutionModelPython27D-6.1
-  vtkIOImagePython27D-6.1
-  vtkCommonDataModelPython27D-6.1
-)
+  SET(VTK_PYTHON_LIBS_VERSION -6.1 CACHE STRING
+    "Version string on the VTK Python libraries")
+  MARK_AS_ADVANCED(VTK_PYTHON_LIBS_VERSION)
+  SET(py_libs
+    vtkWrappingPython27Core${VTK_PYTHON_LIBS_VERSION}
+    vtkInteractionWidgetsPython27D${VTK_PYTHON_LIBS_VERSION}
+    vtkCommonCorePython27D${VTK_PYTHON_LIBS_VERSION}
+    vtkImagingGeneralPython27D${VTK_PYTHON_LIBS_VERSION}
+    vtkImagingStatisticsPython27D${VTK_PYTHON_LIBS_VERSION}
+    vtkCommonExecutionModelPython27D${VTK_PYTHON_LIBS_VERSION}
+    vtkIOImagePython27D${VTK_PYTHON_LIBS_VERSION}
+    vtkCommonDataModelPython27D${VTK_PYTHON_LIBS_VERSION}
+  )
 ENDIF("${VTK_MAJOR_VERSION}" EQUAL 5)
 
 ######################################################
